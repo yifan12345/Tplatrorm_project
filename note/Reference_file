@@ -1,0 +1,24 @@
+在manager.py同层级下创建static文件夹, 里面放上css , js, image等文件或者文件夹
+
+我的文件夹层级
+
+
+
+然后很简单，只需在settings.py中进行设置就行, 在末尾添加以下代码
+
+复制代码
+STATIC_URL = '/static/'
+HERE = os.path.dirname(os.path.abspath(__file__))
+HERE = os.path.join(HERE, '../')
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(HERE, 'static/'),
+)
+复制代码
+在需要使用的html文件中通过以下方式导入
+
+<!--引入本地css & js-->
+        <link rel="stylesheet" href="../static/style/medicine.css" />
+        <script type="text/javascript" src="../static/javascript/medicine.js"></script>

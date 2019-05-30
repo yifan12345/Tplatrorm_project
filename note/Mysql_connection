@@ -1,0 +1,25 @@
+连接mysql数据库参考：https://docs.djangoproject.com/zh-hans/2.2/ref/databases/
+1、本地或者云有创建有数据库
+2、项目下创建my.cnf 文件-可选择位于项目根目录
+    my.cnf配置
+        host = 127.0.0.1
+        port = 3306
+        database = inter_test_persinal
+        user = root
+        password = password
+        default-character-set = utf8
+
+3、配置 settings.py 添加配置项
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'OPTIONS': {
+                'read_default_file': BASE_DIR+'/my.cnf',
+            },
+        }
+    }
+4、安装导入 pymysql    mysqlclient
+5、重新执行数据库迁移
+    python manage.py migrate
+
+6、重新执行python manage.py createsuperuser创建管理员账号
