@@ -62,3 +62,54 @@ var ModuleInit = function (_cmbModule, pid) {
     getModuleListInfo();
 
 };
+
+
+//获取用例信息
+var TestCaseInit = function () {
+    var url = document.location;
+    var cid = url.pathname.split("/")[3];
+    $.post("/case_list/get_case_info/",
+        {
+            cid: cid,
+        },
+        function (resp) {
+            console.log("返回结果：", resp);
+            //URL
+            document.querySelector("#in_url").value = resp.data.url;
+            //请求方法
+            if (resp.data.method === 1) {
+                document.querySelector("#get").setAttribute("checked", "");
+            } else if (resp.data.method === 2) {
+                document.querySelector("#post").setAttribute("checked", "");
+            } else if (resp.data.method === 3) {
+                document.querySelector("#put").setAttribute("checked", "");
+            } else if (resp.data.method === 4) {
+                document.querySelector("#delete").setAttribute("checked", "");
+            }
+            //请求头
+            document.querySelector("#header").value = resp.data.header;
+            //参数类型
+            if (resp.data.par_type === 1) {
+                document.querySelector("#form").setAttribute("checked", "");
+            } else if (resp.data.par_type === 2) {
+                document.querySelector("#json").setAttribute("checked", "");
+            }
+            //请求参数
+            document.querySelector("#parameter").value = resp.data.par_body;
+            //断言类型
+            if (resp.data.assert_type === 1) {
+                document.querySelector("#Contains").setAttribute("checked", "");
+            } else if (resp.data.assert_type === 2) {
+                document.querySelector("#Mathches").setAttribute("checked", "");
+            }
+            //断言的数据
+            document.querySelector("#assert_text").value = resp.data.assert_text;
+
+            //用例名称
+            document.querySelector("#case_name").value = resp.data.case_name;
+
+            //所属模块
+
+        }
+    )
+};

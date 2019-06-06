@@ -47,7 +47,7 @@ def interface_case(requests):
     :param requests:
     :return:
     '''
-    return render(requests, "Interface_case.html")
+    return render(requests, "case_add.html")
 
 
 @login_required
